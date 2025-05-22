@@ -37,8 +37,15 @@ class bank_account
     void withdraw(double amount)
     {
         double tmo = balance.getBa();
-        tmo -= amount;
-        setBalance(tmo);
+        if(tmo > amount)
+        {
+            tmo -= amount;
+            setBalance(tmo);
+        }
+        else
+        {
+            std::cout << "you dont have enough money";
+        }
     }
     double getBalance()
     {
@@ -53,7 +60,7 @@ class personal : public bank_account
 
     public:
 
-    personal(double balance, std::string name): bank_account(balance, name)
+    personal(double balance = 0, std::string name = " "): bank_account(balance, name)
     {}
     ~personal(){}
 
@@ -64,7 +71,7 @@ class organisation : public bank_account
 
     public:
 
-    organisation(double balance, std::string name): bank_account(balance, name)
+    organisation(double balance = 0, std::string name = " "): bank_account(balance, name)
     {}
     ~organisation(){}
 

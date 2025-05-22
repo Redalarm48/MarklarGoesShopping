@@ -24,7 +24,14 @@ class currency
     }
 
     virtual double to_usd()const{}
+    
     ~currency(){}
+
+    currency& operator=(double amt)
+    {
+        balance = amt;
+        return *this;
+    }
 
 };
 
@@ -36,7 +43,7 @@ class usd : public currency
 
     public:
 
-    usd(double balance):currency(balance , "USD"){}
+    usd(double balance= 0):currency(balance , "USD"){}
 
     double to_usd()const override
     {
@@ -56,7 +63,7 @@ class eur : public currency
 
     public:
 
-    eur(double balance):currency(balance , "EUR"){}
+    eur(double balance = 0 ):currency(balance , "EUR"){}
 
     double to_usd()const override
     {
@@ -76,7 +83,7 @@ class irr : public currency
 
     public:
 
-    irr(double balance):currency(balance , "IRR"){}
+    irr(double balance = 0):currency(balance , "IRR"){}
 
     double to_usd()const override
     {

@@ -7,16 +7,40 @@
 class Product
 {
 
-    protected :
+    private :
 
         std::string Name;
         double Price;
         int Amount;
-        std::string Unit;
+        std::string Unit ;
 
     public :
 
-        Product(std::string name , double price , int amount , std::string unit){}
+    Product(std::string name = " " , double price = 0 , int amount = 0 , std::string unit = " ") : Name(name) , Price(price) , Amount(amount) , Unit(unit)
+        {
+
+            if(Amount < 0)
+            {   
+
+                Amount = 0;
+
+            }
+
+        }
+
+        std::string getterN()
+        {
+            return Name;
+        }
+        double& getterP()
+        {
+            return Price;
+        }
+        int& getterA()
+        {
+            return Amount;
+        }
+
 
         double getAmount();
 
@@ -30,22 +54,22 @@ class Product
 
 class Fruit : public Product
 {
-
-    Fruit(std::string name , int amount , double price);
+    public:
+    Fruit(std::string name = " ", int amount = 0 , double price = 0) : Product(name , price , amount , "kg"){}
 
 };
 
 class Seasoning : public Product
 {
-
-    Seasoning(std::string name , int amount , double price);
+    public:
+    Seasoning(std::string name  = " ", int amount = 0, double price = 0) : Product(name , price , amount , "g"){}
 
 };
 
 class Snack : public Product
 {
-
-    Snack(std::string name , int amount , double price);
+    public: 
+    Snack(std::string name = " ", int amount = 0, double price = 0) : Product(name , price , amount , "Package"){}
 };
 
 #endif
