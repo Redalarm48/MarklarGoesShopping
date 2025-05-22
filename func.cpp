@@ -51,8 +51,19 @@ std::string app()
     Fruit sib("sib" , 10 , 100);
     items[0] = sib;
     
-    organisation cashier(50000 , "cashier");
-    personal customer(5000 , "customer");
+    currency* bal = nullptr;
+    currency* bal2 = nullptr;
+    currency* bal3 = nullptr;
+
+    bal = new irr(900000000);
+    bal2 = new usd(500000);
+    bal3 = new eur(50000);
+
+
+
+    organisation cashier(bal2 , "cashier");
+    personal customer(bal , "customer");
+    personal customer2(bal3 , "customer");
 
     std::string request;
     int role;

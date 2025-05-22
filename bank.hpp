@@ -8,13 +8,14 @@ class bank_account
 {
     private:
 
-    usd balance;
+    
+    currency* balance;
     std::string name;
     int id;
 
     public:
     
-    bank_account(usd b, std::string n):balance(b), name(n)
+    bank_account(currency* b, std::string n):balance(b), name(n)
     {}
     void setID(int ID)
     {
@@ -26,17 +27,17 @@ class bank_account
     }
     void setBalance(double amount)
     {
-        balance = amount;
+        *balance = amount;
     }
     void deposit(double amount)
     {
-        double tmp = balance.getBa();
+        double tmp = balance->getBa();
         tmp += amount;
         setBalance(tmp);
     }
     void withdraw(double amount)
     {
-        double tmo = balance.getBa();
+        double tmo = balance->getBa();
         if(tmo > amount)
         {
             tmo -= amount;
@@ -44,24 +45,24 @@ class bank_account
         }
         else
         {
-            std::cout << "you dont have enough money";
+            std::cout << "you dont have enough money\n";
         }
     }
     double getBalance()
     {
-        return balance.to_usd();
+        return balance->to_usd();
     };
-    ~bank_account(){}
+    ~bank_account()
+    {
+        delete balance;
+    }
 };
 
 class personal : public bank_account
 {
-    private:
-
     public:
 
-    personal(double balance = 0, std::string name = " "): bank_account(balance, name)
-    {}
+    personal(currency* b , std::string name) : bank_account(b , name){}
     ~personal(){}
 
 };
@@ -71,8 +72,7 @@ class organisation : public bank_account
 
     public:
 
-    organisation(double balance = 0, std::string name = " "): bank_account(balance, name)
-    {}
+    organisation(currency* b , std::string name) : bank_account(b , name){}
     ~organisation(){}
 
 };
