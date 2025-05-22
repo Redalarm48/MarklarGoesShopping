@@ -6,17 +6,20 @@
 
 class bank_account
 {
-    private:
+    protected:
 
     
     currency* balance;
     std::string name;
     int id;
+    
 
     public:
+
+    static double limit;
     
-    bank_account(currency* b, std::string n):balance(b), name(n)
-    {}
+    bank_account(currency* b, std::string n):balance(b), name(n){}
+
     void setID(int ID)
     {
         id = ID;
@@ -29,25 +32,15 @@ class bank_account
     {
         *balance = amount;
     }
-    void deposit(double amount)
+    virtual void deposit(double amount){}
+
+    virtual void withdraw(double amount){}
+
+    double getterLimit()
     {
-        double tmp = balance->getBa();
-        tmp += amount;
-        setBalance(tmp);
+        return limit;
     }
-    void withdraw(double amount)
-    {
-        double tmo = balance->getBa();
-        if(tmo > amount)
-        {
-            tmo -= amount;
-            setBalance(tmo);
-        }
-        else
-        {
-            std::cout << "you dont have enough money\n";
-        }
-    }
+
     double getBalance()
     {
         return balance->to_usd();
@@ -63,6 +56,42 @@ class personal : public bank_account
     public:
 
     personal(currency* b , std::string name) : bank_account(b , name){}
+    void deposit(double amount)override
+    {
+        if(getterLimit() < 1000)
+        {
+            double tmp = balance->getBa();
+            tmp += amount;
+            setBalance(tmp);
+            limit += amount;
+            
+        }
+        else
+        {
+            std::cout << "transfer limit passed \n";
+        }
+    }
+    void withdraw(double amount)override
+    {
+        if(getterLimit() < 1000)
+        {
+            double tmo = balance->getBa();
+            if(tmo > amount)
+            {
+                tmo -= amount;
+                setBalance(tmo);
+                limit += amount;
+            }
+            else
+            {
+                std::cout << "you dont have enough money\n";
+            }
+        }
+        else
+        {
+            std::cout << "transfer limit passed \n";
+        }
+    }
     ~personal(){}
 
 };
@@ -73,8 +102,44 @@ class organisation : public bank_account
     public:
 
     organisation(currency* b , std::string name) : bank_account(b , name){}
+    void deposit(double amount)override
+    {
+        if(getterLimit() <= 1000)
+        {
+            double tmp = balance->getBa();
+            tmp += amount;
+            setBalance(tmp);
+            limit += amount;
+        }
+        else
+        {
+            std::cout << "transfer limit passed \n";
+        }
+    }
+    void withdraw(double amount)override
+    {
+        if(getterLimit() <= 1000)
+        {
+            double tmo = balance->getBa();
+            if(tmo > amount)
+            {
+                tmo -= amount;
+                setBalance(tmo);
+                limit += amount;
+            }
+            else
+            {
+                std::cout << "you dont have enough money \n";
+            }
+        }
+        else
+        {
+            std::cout << "transfer limit passed \n";
+        }
+    }
     ~organisation(){}
 
 };
 
+double bank_account::limit = 0;
 #endif

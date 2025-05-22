@@ -145,14 +145,14 @@ std::string app()
         else if(choice == 2)
         {
             double deposit;
-            std::cout << "enter the amount you want to deposit";
+            std::cout << "enter the amount you want to deposit : ";
             std::cin >> deposit;
             cashier.deposit(deposit);
         }
         else if(choice == 3)
         {
             double withdraw;
-            std::cout << "enter the amount you want to withdraw";
+            std::cout << "enter the amount you want to withdraw : ";
             std::cin >> withdraw;
             cashier.withdraw(withdraw);
         }
@@ -217,14 +217,14 @@ std::string app()
         else if(choice == 2)
         {
             double deposit;
-            std::cout << "enter the amount you want to deposit";
+            std::cout << "enter the amount you want to deposit : ";
             std::cin >> deposit;
             customer.deposit(deposit);
         }
         else if(choice == 3)
         {
             double withdraw;
-            std::cout << "enter the amount you want to withdraw";
+            std::cout << "enter the amount you want to withdraw : ";
             std::cin >> withdraw;
             customer.withdraw(withdraw);
         }
