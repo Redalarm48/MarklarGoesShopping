@@ -18,6 +18,11 @@ class currency
         name = n;
     }
 
+    double getBa()
+    {
+        return balance;
+    }
+
     virtual double to_usd()const{}
     ~currency(){}
 

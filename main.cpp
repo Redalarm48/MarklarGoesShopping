@@ -1,11 +1,16 @@
 #include <iostream>
 #include "bank.hpp"
 #include "mark.hpp"
+#include "func.cpp"
 
 using namespace std;
 
 int main()
 {
+    personal a(0,"cust");
+    a.setID(2);
+    organisation o(0,"org");
+    o.setID(1);
     bool run = true;
     int id;
     while(run)

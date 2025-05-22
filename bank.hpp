@@ -16,6 +16,34 @@ class bank_account
     
     bank_account(usd b, std::string n):balance(b), name(n)
     {}
+    void setID(int ID)
+    {
+        id = ID;
+    }
+    int getID()
+    {
+        return id;
+    }
+    void setBalance(double amount)
+    {
+        balance = amount;
+    }
+    void deposit(double amount)
+    {
+        double tmp = balance.getBa();
+        tmp += amount;
+        setBalance(tmp);
+    }
+    void withdraw(double amount)
+    {
+        double tmo = balance.getBa();
+        tmo -= amount;
+        setBalance(tmo);
+    }
+    double getBalance()
+    {
+        return balance.to_usd();
+    };
     ~bank_account(){}
 };
 
@@ -42,7 +70,4 @@ class organisation : public bank_account
 
 };
 
-void deposit(double amount);
-void withdraw(double amount);
-void getBalance();
 #endif

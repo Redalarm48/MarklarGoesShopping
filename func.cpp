@@ -1,20 +1,6 @@
 #include <iostream>
 #include "bank.hpp"
 #include "mark.hpp"
-void deposit(double amount)
-{
-    
-}
-
-void withdraw(double amount)
-{
-
-}
-
-void getBalance()
-{
-
-}
 
 std::string input()
 {
